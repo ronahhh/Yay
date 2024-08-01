@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask a Question</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f8ff;
+            margin: 0;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        #question {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+        }
+        .yes {
+            background-color: #4caf50;
+        }
+        .no {
+            background-color: #f44336;
+        }
+        #animations {
+            display: none;
+        }
+        .flower, .heart {
+            position: absolute;
+            pointer-events: none;
+            width: 50px;
+            height: 50px;
+        }
+        .flower {
+            background-image: url('https://img.icons8.com/ios-filled/50/000000/flower.png');
+        }
+        .heart {
+            background-image: url('https://img.icons8.com/ios-filled/50/000000/heart.png');
+        }
+        @keyframes dance {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-50px); }
+            100% { transform: translateY(0); }
+        }
+        .animated {
+            animation: dance 1s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <div id="question">Hi baby, can I be your girlfriend please?</div>
+        <button class="button yes" onclick="handleAnswer('yes')">Yes</button>
+        <button class="button no" onclick="handleAnswer('no')">No</button>
+    </div>
+    <div id="animations"></div>
+
+    <script>
+        function handleAnswer(answer) {
+            if (answer === 'yes') {
+                document.getElementById('content').style.display = 'none';
+                const animations = document.getElementById('animations');
+                animations.style.display = 'block';
+                for (let i = 0; i < 20; i++) {
+                    createAnimation('flower');
+                    createAnimation('heart');
+                }
+            } else {
+                alert('Maybe next time!');
+            }
+        }
+
+        function createAnimation(type) {
+            const div = document.createElement('div');
+            div.className = ${type} animated;
+            div.style.left = ${Math.random() * 100}vw;
+            div.style.top = ${Math.random() * 100}vh;
+            document.getElementById('animations').appendChild(div);
+            setTimeout(() => div.remove(), 5000); // Remove after 5 seconds
+        }
+    </script>
+</body>
+</html>
